@@ -7,7 +7,7 @@ export function TradingPairAutoComplete(props: { symbols: string[] }) {
   return (
     <Autocomplete
       options={props.symbols}
-      sx={{ minWidth: 200 }}
+      sx={{ minWidth: 120 }}
       disableClearable={true}
       value={tradingPair}
       onChange={(e, val) => setTradingPair(val as string)}

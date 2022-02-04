@@ -27,7 +27,7 @@ export function AppBar() {
   useInitialization(setTradingPairs, setTradingPair)
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 3 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-evenly', m: 4 }}>
       <TradingPairAutoComplete symbols={tradingPairs} />
       <DecimalTypeSelect />
       <OrderTypeFilter />

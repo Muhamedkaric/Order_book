@@ -23,10 +23,11 @@ export function DecimalTypeSelect() {
     ))
   }
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ margin: '0 6px' }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Decimal Type</InputLabel>
         <Select
+          sx={{ minWidth: 110 }}
           value={decimalType}
           label="Decimal Type"
           onChange={(e: SelectChangeEvent<DecimalType>) => setDecimalType(e.target.value as DecimalType)}>
