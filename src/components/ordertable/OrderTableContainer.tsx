@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { SelectorsContext } from '../../context/SelectorsContext'
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import { createSocketUrl, fetcher, mapOrderBook } from '../../common/utils'
-import { DepthSnapshot, DepthUpdate, OrderBook } from '../../common/types'
+import { DepthSnapshot, DepthUpdate, OrderBook, OrderType } from '../../common/types'
 import { DEPTH_SNAPSHOT_BASE_URL } from '../../common/constants'
 import { OrderTable } from './OrderTable'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
@@ -42,16 +42,19 @@ export function OrderTableContainer() {
   const socketUrl = createSocketUrl(tradingPair)
   const { lastJsonMessage: message, readyState } = useWebSocket(socketUrl)
 
-  const data = useDepthState(tradingPair, message)
+  const { asks, bids } = useDepthState(tradingPair, message)
 
-  if (readyState != ReadyState.OPEN) {
-    return <div style={{ color: 'white' }}>LOADING</div>
+  const types: OrderType[] = orderType == 'COMBINED' ? ['BUY', 'SELL'] : [orderType]
+
+  function renderTables() {
+    return types.map((type) => {
+      return <OrderTable key={type} orders={type == 'BUY' ? asks : bids} type={type} />
+    })
   }
-
+  const connected = readyState == ReadyState.OPEN
   return (
     <Box sx={{ p: 3, m: 3, display: 'flex', justifyContent: 'space-around' }}>
-      {orderType != 'SELL' && <OrderTable orders={data.asks} type={'BUY'} />}
-      {orderType != 'BUY' && <OrderTable orders={data.bids} type={'SELL'} />}
+      {connected ? renderTables() : <CircularProgress size={100} />}
     </Box>
   )
 }

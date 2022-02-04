@@ -35,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
+    "test": "react-scripts test --passWithNoTests --watchAll",
     "madge": "madge src --extensions js,ts,tsx --circular",
     "prettier": "prettier --write ./src",
     "eslint": "eslint --ext .tsx,.ts,.js  ./src",
