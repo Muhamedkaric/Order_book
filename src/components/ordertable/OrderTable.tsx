@@ -25,7 +25,8 @@ const columns = [
 ]
 
 const TableStyled = styled('div')({
-  padding: '5px',
+  margin: '6px',
+  paddingRight: '3px',
   border: '1px solid gray',
   height: 'calc(100vh - 210px)',
   width: '300px',

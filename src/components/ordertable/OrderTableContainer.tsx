@@ -53,7 +53,7 @@ export function OrderTableContainer() {
   }
   const connected = readyState == ReadyState.OPEN
   return (
-    <Box sx={{ p: 3, m: 3, display: 'flex', justifyContent: 'space-around' }}>
+    <Box sx={{ m: 2, display: 'flex', justifyContent: 'space-around' }}>
       {connected ? renderTables() : <CircularProgress size={100} />}
     </Box>
   )
