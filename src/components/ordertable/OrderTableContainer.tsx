@@ -48,7 +48,7 @@ export function OrderTableContainer() {
 
   function renderTables() {
     return types.map((type) => {
-      return <OrderTable key={type} orders={type == 'BUY' ? asks : bids} type={type} />
+      return <OrderTable key={type} orders={type == 'BUY' ? bids : asks} type={type} />
     })
   }
   const connected = readyState == ReadyState.OPEN
